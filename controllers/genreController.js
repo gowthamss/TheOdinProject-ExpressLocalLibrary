@@ -104,6 +104,7 @@ exports.genre_delete_get = function(req, res, next) {
             // If genre is not found, redirect back to genres
             if (results.genre === null) {
                 res.redirect('/catalog/genres');
+                return;
             }
 
             // Successful, so render
@@ -117,10 +118,10 @@ exports.genre_delete_post = function(req, res, next) {
     console.log('params id: ', req.params.genreid);
     async.parallel({
             genre: function(callback) {
-                Genre.findById(req.params.genreid).exec(callback);
+                Genre.findById(req.params.id).exec(callback);
             },
             genre_books: function(callback) {
-                Book.find({ genre: req.params.genreid }).exec(callback);
+                Book.find({ genre: req.params.id }).exec(callback);
             }
         },
         function(err, results) {

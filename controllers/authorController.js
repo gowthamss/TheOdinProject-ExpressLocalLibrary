@@ -102,7 +102,8 @@ exports.author_delete_get = function(req, res, next) {
             if (err) { return next(err); }
 
             if (results.author === null) {
-                res.redirect('/catalog/authors')
+                res.redirect('/catalog/authors');
+                return;
             }
             // Successful, so render
             res.render('author_delete', { title: 'Delete Author', author: results.author, author_books: results.authors_books });
