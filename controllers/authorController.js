@@ -104,7 +104,6 @@ exports.author_delete_get = function(req, res, next) {
             if (results.author === null) {
                 res.redirect('/catalog/authors')
             }
-
             // Successful, so render
             res.render('author_delete', { title: 'Delete Author', author: results.author, author_books: results.authors_books });
         }
@@ -132,7 +131,7 @@ exports.author_delete_post = function(req, res, next) {
                 return;
             } else {
                 // Author has no books. Delete object and redirect to the list of authors.
-                Author.findByIdAndRemove(req.params.authorid, function deleteAuthor(err) {
+                Author.findByIdAndRemove(req.body.authorid, function deleteAuthor(err) {
                     if (err) { return next(err); }
 
                     // Success, go to the author list
