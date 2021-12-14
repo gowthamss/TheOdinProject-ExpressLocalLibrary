@@ -265,6 +265,7 @@ exports.book_update_post = [
                 req.body.genre = new Array(req.body.genre);
             }
         }
+        next();
     },
 
     // Validate and sanitise fields.
