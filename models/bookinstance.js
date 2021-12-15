@@ -20,6 +20,12 @@ BookInstanceSchema.virtual('url')
 BookInstanceSchema.virtual('due_back_formatted')
     .get(function() {
         return DateTime.fromJSDate(this.due_back).toLocaleString(DateTime.DATE_MED);
+    });
+
+// Virtual for data format yyyy-mm-dd
+BookInstanceSchema.virtual('due_back_yyyy_mm_dd')
+    .get(function() {
+        return DateTime.fromJSDate(this.due_back).toISODate();
     })
 
 // Export model
