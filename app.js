@@ -12,11 +12,12 @@ const helmet = require('helmet');
 
 var app = express();
 
-app.use(helmet);
+app.use(helmet());
 
 // Database connection
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb+srv://gowthamss:locallibrary010@locallibrarycluster.sjibb.mongodb.net/local_library?retryWrites=true&w=majority';
+const dev_db_url = 'mongodb+srv://gowthamss:locallibrary010@locallibrarycluster.sjibb.mongodb.net/local_library?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URL || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
